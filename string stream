@@ -1,20 +1,27 @@
+#include <sstream>
+#include <vector>
 #include <iostream>
-#include <string>
 using namespace std;
 
+vector<int> parseInts(string str) {
+	vector<int> integers;
+    stringstream ss(str);
+    char ch;
+    int num;
+    while (ss >> num) {
+        integers.push_back(num);
+        ss >> ch; // Read and discard the comma
+    }
+    return integers;
+}
+
 int main() {
-	// Complete the program
-    string a, b;
-    cin >> a >> b;
-
-    cout << a.size() << " " << b.size() << endl;
-    cout << a + b << endl;
-
-    char temp = a[0];
-    a[0] = b[0];
-    b[0] = temp;
-
-    cout << a << " " << b << endl;
-
+    string str;
+    cin >> str;
+    vector<int> integers = parseInts(str);
+    for(int i = 0; i < integers.size(); i++) {
+        cout << integers[i] << "\n";
+    }
+    
     return 0;
 }
